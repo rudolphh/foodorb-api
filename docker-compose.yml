@@ -1,0 +1,18 @@
+version: "3"
+services:
+  nginx:
+    container_name: lara-nginx
+    image: nginx
+    working_dir: /www
+    ports:
+      - "8080:80"
+    volumes:
+      - ./site.conf:/etc/nginx/conf.d/default.conf
+      - ./:/www:delegated
+  php:
+    container_name: lara-php
+    image: lostdesign/laravel:1.2
+    working_dir: /www
+    volumes:
+      - ./:/www:delegated
+
